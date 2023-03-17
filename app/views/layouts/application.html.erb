@@ -60,7 +60,25 @@
     </script>
 
     <!-- Custom css -->
-    
+    <style type="text/css">
+      /* Authentication */
+
+      .authentication-card {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin: auto;
+          max-width: 60rem;
+          height: 100vh;
+      }
+
+      @media screen and (max-width:1024px) {
+          .authentication-card {
+              padding: 1.5rem 0;
+              height: auto;
+          }
+      }
+    </style>
   </head>
 
   <body class="app-background" data-controller="<%= controller_name %>" data-action="<%= action_name %>" data-relative-root="<%= Rails.configuration.relative_url_root || "/" %>">

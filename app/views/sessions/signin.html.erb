@@ -17,7 +17,8 @@
   <div class="authentication-card">
     <div class="card">
       <div class="row g-0">
-        <div class="col-lg-6 bg-login d-flex align-items-center justify-content-center">
+        <!-- align-items-center -->
+        <div class="col-lg-6 bg-login d-flex justify-content-center">
           <%= image_tag("login_image.jpg", alt: "Login Image", class: "img-fluid") %>
         </div>
         <div class="col-lg-6">
@@ -29,14 +30,12 @@
                 <div class="col-12 mb-3">
                   <label for="inputEmailAddress" class="form-label">Email Address</label>
                   <div class="ms-auto position-relative">
-                    <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
                     <%= f.email_field :email, class: "form-control", placeholder: t("email"), value: "", autofocus: "", required: "" %>
                   </div>
                 </div>
                 <div class="col-12 mb-3">
                   <label for="inputChoosePassword" class="form-label">Enter Password</label>
                   <div class="ms-auto position-relative">
-                    <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
                     <%= f.password_field :password, class: "form-control", placeholder: t("password"), value: "", required: "" %>
                   </div>
                 </div>

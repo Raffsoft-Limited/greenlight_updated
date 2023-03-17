@@ -51,11 +51,9 @@
                     <%= f.submit t("login"), class: "btn btn-primary btn-block signin-button" %>
                   </div>
                 </div>
-                <% if Rails.configuration.enable_email_verification %>
-                <div class="col-12 mb-3">
+                <div class="col-12 text-center mb-3">
                   <p class="mb-0">Don't have an account yet? <%= link_to t("signup.title"), signup_path %></p>
                 </div>
-                <% end %>
               </div>
 
               <% unless iconset_providers.length.zero? %>

@@ -18,7 +18,7 @@
     <div class="card shadow rounded-0 overflow-hidden">
       <div class="row g-0">
         <div class="col-lg-6 bg-login d-flex align-items-center justify-content-center">
-          <img src="https://africanmarketingconfederation.org/wp-content/uploads/2022/01/20-January-Online-Meetings-1024x683.jpg" class="img-fluid" alt="">
+          <%= image_tag(asset_path('image_login.jpg'), class: "img-fluid", alt:"Login Image") %>
         </div>
         <div class="col-lg-6">
           <div class="card-body p-4 p-sm-5">
@@ -26,14 +26,14 @@
             <p class="card-text mb-5">See your growth and get consulting support!</p>
             <%= form_for(:session, url: create_session_path) do |f| %>
               <div class="row g-3">
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <label for="inputEmailAddress" class="form-label">Email Address</label>
                   <div class="ms-auto position-relative">
                     <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-envelope-fill"></i></div>
                     <%= f.email_field :email, class: "form-control", placeholder: t("email"), value: "", autofocus: "", required: "" %>
                   </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <label for="inputChoosePassword" class="form-label">Enter Password</label>
                   <div class="ms-auto position-relative">
                     <div class="position-absolute top-50 translate-middle-y search-icon px-3"><i class="bi bi-lock-fill"></i></div>
@@ -42,20 +42,18 @@
                 </div>
 
                 <% if Rails.configuration.enable_email_verification %>
-                  <div class="col-12 text-end">
+                  <div class="col-12  mb-3 text-end">
                     <%= link_to t("modal.login.forgot_password"), new_password_reset_path %>
                 </div>
                 <% end %>
-                
-                <div class="col-12 text-end"> <a href="authentication-forgot-password.html">Forgot Password ?</a>
-                </div>
-                <div class="col-12">
+
+                <div class="col-12 mb-3">
                   <div class="d-grid">
                     <%= f.submit t("login"), class: "btn btn-primary btn-block signin-button" %>
                   </div>
                 </div>
                 <% if Rails.configuration.enable_email_verification %>
-                <div class="col-12">
+                <div class="col-12 mb-3">
                   <p class="mb-0">Don't have an account yet? <%= link_to t("signup.title"), signup_path %></p>
                 </div>
                 <% end %>
@@ -63,9 +61,9 @@
 
               <% unless iconset_providers.length.zero? %>
               
-              <div class="login-separater text-center mb-4"> <span>OR SIGN IN WITH</span>
-                <hr>
-              </div>
+                <div class="col-12 my-2 text-center">
+                  Or Sign In with
+                </div>
 
                 <% iconset_providers.each do |provider| %>
                   <%= link_to omniauth_login_url(provider), class: "btn btn-white radius-30 customBtn-#{provider} oauth-signin", method: :post do %>

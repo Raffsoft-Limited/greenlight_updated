@@ -336,7 +336,7 @@ en:
     search:
       start: Start searching...
   landing:
-    about: "%{href} is a simple front-end for your BigBlueButton open-source web conferencing server. You can create your own rooms to host sessions, or join others using a short and convenient link."
+    about: "%{href} is our custom-designed platform features a sleek interface for seamless video conferencing. Join meetings with ease and collaborate effortlessly with Colabo."
     welcome: Welcome to Colabo
     video: Watch our tutorial on using Colabo
     upgrade: We are working on new updates v3.0 coming soon!

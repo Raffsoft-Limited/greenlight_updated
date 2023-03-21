@@ -148,5 +148,4 @@ Rails.application.routes.draw do
 
   # root to: 'main#index'
   root to: redirect('https://colabo.raffsoft.com/'), status: :moved_permanently
-  root
 end

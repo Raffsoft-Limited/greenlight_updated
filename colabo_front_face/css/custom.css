@@ -54,3 +54,25 @@
     opacity: 0;
   }
 }
+
+.br-20{border-radius: 20px; margin-right: 20px;}
+
+@media only screen and (max-width: 768px) {
+    .hide_below_md {
+        display: none;
+    }
+
+    .add_padg{
+        padding-bottom: 30px;
+    }
+}
+
+.slide:after {
+    content: '\A';
+    position: absolute;
+    width: 100%; height:100%;
+    background:rgba(0,0,0,0.6);
+    opacity: 1;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+}

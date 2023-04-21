@@ -83,6 +83,13 @@
         <div class="dropdown-divider"></div>
         <% end %>
 
+        <% audio_path = "https://colabo.raffsoft.com/audio_zip.php?recordID=#{recording[:recordID]}" %>
+        <% response = Net::HTTP.get_response(URI(audio_path)) %>
+        <% if response.code == '200' %>
+        <a class="dropdown-item" href="/audio_zip.php?recordID=<%= recording[:recordID] %>" download><i class="dropdown-icon fas fa-download"></i>Download MP3 Audio</a>
+        <div class="dropdown-divider"></div>
+        <% end %>
+
         <% recording_links = "" %>
         <% p = recording[:playbacks].each do |p| recording_links.concat(p[:url] + "\n\n") if p.key?(:length) end %>
         <% if p %>

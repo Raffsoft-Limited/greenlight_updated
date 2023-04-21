@@ -38,3 +38,13 @@ We invite you to build upon Greenlight and help make it better. See [Contributin
 We invite your feedback, questions, and suggests about Greenlight too. Please post them to the [Greenlight mailing list](https://groups.google.com/forum/#!forum/bigbluebutton-greenlight).
 
 To help with organization and consistency, we have implemented a Pull Request template that must be used for all Pull Requests. This template helps ensure that the project maintainers can review all PRs in a timely manner. When creating a Pull Request, please provide as much information as possible.
+
+
+```bash
+#mount directory
+docker run -v /var/www/bigbluebutton-default/recording:/var/www/bigbluebutton-default/recording greenlight-v2
+#unmount directory
+docker rm -v greenlight_image:release-v2
+
+#raw files here </var/bigbluebutton/recording/raw/<recordID>/audio/ > please note that it is better to zip all the files and download them
+```

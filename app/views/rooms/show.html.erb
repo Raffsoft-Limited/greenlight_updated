@@ -33,7 +33,8 @@
         </div>
         <h4 class="text-left mb-6"><%= @room.sessions %> <%= t("room.sessions") %><% unless hide_recording_tables %> | <%= @recordings.length %> <%= t("room.recordings") %><% end %></h4>
         <% unless exceeds_limit %>
-          <label class="form-label"><%= t("room.invite_participants") %></label>
+          <label class="form-label text-info"><%= t("room.invite_participants") %></label>
+          <label class="form-label text-info">Participants should use the following recommended browsers on their phone, tablet, laptop or desktop computer: Chrome, Microsoft Edge, Firefox, Brave, Safari, Opera</label>
           <div class="row">
             <div class="col-lg-6 col-md-12 mt-2">
               <div class="input-icon invite-link-input">

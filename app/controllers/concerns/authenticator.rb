@@ -60,13 +60,9 @@ module Authenticator
       end
 
       # Delete the cookie if it exists
-      cookies.delete :return_to if cookies[:return_to]
-
-      redirect_to = if url.nil?
-        url
-      else
-        root_url
-      end
+      cookies.delete :return_to if cookies[:return_to
+        
+      redirect_to url
     else
       session[:user_id] = nil
       user.create_activation_token

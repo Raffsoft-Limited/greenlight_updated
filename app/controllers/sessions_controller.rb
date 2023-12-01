@@ -21,10 +21,65 @@ class SessionsController < ApplicationController
   include Registrar
   include Emailer
   include LdapAuthenticator
+  require 'jwt'
 
   skip_before_action :verify_authenticity_token, only: [:omniauth, :fail]
   before_action :check_user_signup_allowed, only: [:new]
   before_action :ensure_unauthenticated_except_twitter, only: [:new, :signin, :ldap_signin]
+
+  
+
+  def login_with_jwt
+    token = params[:token]
+
+    if token
+      # Decode the JWT token
+      decoded_token = JWT.decode(token, ENV['ONESTOP_SSO_JWT_KEY'], true, algorithm: 'HS256')
+
+      email = decoded_token[0]['email']
+      user_id = decoded_token[0]['user_id']
+      username = decoded_token[0]['username']
+
+      # Try to find the user by email
+      user = User.find_by(email: email)
+
+      if user.nil?
+        # User with the given email does not exist, create a new user
+        password = "#{user_id}#{username}1stop@#"
+        full_name = username
+
+        # You may need to adjust the following attributes based on your User model
+        new_user = User.new(
+          email: email,
+          password: password,
+          password_confirmation: password,
+          name: full_name,
+          email_verified: true,
+          accepted_terms: true, # Assuming you want to accept terms automatically
+          role: Role.find_by(name: 'user') # Set the user role
+        )
+
+        if new_user.save
+          # Log in the new user
+          sign_in(new_user)
+
+          render json: { success: true, message: 'User created and logged in successfully', redirect_url: '/u/' }
+        else
+          render json: { success: false, message: 'User creation failed', errors: new_user.errors.full_messages }
+        end
+      else
+        # User with the given email already exists, log in the user
+        sign_in(user)
+
+        render json: { success: true, message: 'User logged in successfully', redirect_url: '/u/' }
+      end
+    else
+      render json: { success: false, message: 'Token missing' }
+    end
+  rescue JWT::DecodeError
+    render json: { success: false, message: 'Invalid token' }
+  end
+
 
   # GET /signin
   def signin

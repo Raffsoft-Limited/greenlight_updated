@@ -36,6 +36,12 @@ Rails.application.routes.draw do
   # Admin resouces
   resources :admins, only: [:index]
 
+  # config/routes.rb
+
+  # Add a new route for JWT login // Onestop Login
+  get '/login_with_jwt', to: 'sessions#login_with_jwt'
+
+
   scope '/admins' do
     # Panel Tabs
     get '/rooms', to: 'admins#server_rooms', as: :admin_rooms

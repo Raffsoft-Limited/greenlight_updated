@@ -17,6 +17,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'cancancan', '~> 2.3.0'
 gem 'coveralls', '~> 0.8.23', require: false
 gem 'font-awesome-sass', '~> 5.9.0'
+gem 'jwt'
 gem 'google-cloud-storage', '~> 1.30.0'
 gem 'http_accept_language', '~> 2.1.1'
 gem 'i18n-language-mapping', '~> 0.1.3.1'

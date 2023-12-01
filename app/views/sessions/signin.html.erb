@@ -56,11 +56,60 @@
                 </div>
               </div>
 
-              <% unless iconset_providers.length.zero? %>
+              <div class="col-12 my-2 text-center">
+                Or Sign In with
+              </div>
+
+              <style>
+                  .login-with-google-btn {
+                    transition: background-color .3s, box-shadow .3s;
+
+                    padding: 12px 16px 12px 42px;
+                    border: none;
+                    border-radius: 3px;
+                    box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+
+                    color: #757575;
+                    font-size: 14px;
+                    font-weight: 500;
+                    background-color: white;
+                    background-repeat: no-repeat;
+                    background-position: 12px 11px;
+
+                    &:hover {
+                      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 2px 4px rgba(0, 0, 0, .25);
+                    }
+
+                    &:active {
+                      background-color: #eeeeee;
+                    }
+
+                    &:focus {
+                      outline: none;
+                      box-shadow:
+                        0 -1px 0 rgba(0, 0, 0, .04),
+                        0 2px 4px rgba(0, 0, 0, .25),
+                        0 0 0 3px #c8dafc;
+                    }
+
+                    &:disabled {
+                      filter: grayscale(100%);
+                      background-color: #ebebeb;
+                      box-shadow: 0 -1px 0 rgba(0, 0, 0, .04), 0 1px 1px rgba(0, 0, 0, .25);
+                      cursor: not-allowed;
+                    }
+                  }
+
+              </style>
+
+              <div class="col-12 my-2 text-center">
+                <a type="button" class="login-with-google-btn mt-3" href="http://127.0.0.1:8008/login/?redirect_to=https://colabo.raffsoft.com/b/login_with_jwt">
+                    <img src="https://www.1stop.co.ug/static/img/logo.png" style="width: 50px;" alt=""> &nbsp;Sign in with 1stop
+                </a>
+              </div>
               
-                <div class="col-12 my-2 text-center">
-                  Or Sign In with
-                </div>
+
+              <% unless iconset_providers.length.zero? %>
 
                 <% iconset_providers.each do |provider| %>
                   <%= link_to omniauth_login_url(provider), class: "btn btn-white radius-30 customBtn-#{provider} oauth-signin", method: :post do %>

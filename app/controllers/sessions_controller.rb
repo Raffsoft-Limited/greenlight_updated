@@ -61,6 +61,8 @@ class SessionsController < ApplicationController
           # role: Role.find_by(name: 'user') # Set the user role
         )
 
+        create_room(new_user)
+
         # Set the user role and update permissions
         user_role = Role.find_by(name: 'user')
         new_user.role = user_role
@@ -88,6 +90,11 @@ class SessionsController < ApplicationController
     end
   rescue JWT::DecodeError
     render json: { success: false, message: 'Invalid token' }
+  end
+
+  # Create a room with the user's name
+  def create_room(user)
+    Room.create(name: user.name, owner: user)
   end
 
 

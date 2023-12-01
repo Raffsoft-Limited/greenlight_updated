@@ -69,8 +69,10 @@ class SessionsController < ApplicationController
           new_user.set_role(role)
           new_user.save()
 
+          create_room(new_user)
+
           # Create a home room for the user
-          new_user.create_home_room
+          # new_user.create_home_room
 
           # Log in the new user
           login(new_user)
@@ -96,7 +98,7 @@ class SessionsController < ApplicationController
 
   # Create a room with the user's name
   def create_room(user)
-    Room.create(name: user.name, owner: user)
+    Room.create!(owner: user.name, name: I18n.t("home_room"))
   end
 
 

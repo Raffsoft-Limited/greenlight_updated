@@ -67,16 +67,14 @@ class SessionsController < ApplicationController
           # Set the user role as a normal user
           role = Role.find_by(name: 'user')
           new_user.set_role(role)
-          new_user.role = role
-          role.update_all_role_permissions(can_create_rooms: true, can_launch_recording: true) 
           new_user.save()
 
+          # Create a home room for the user
+          new_user.create_home_room
 
           # Log in the new user
           login(new_user)
 
-          # Create a home room for the user
-          new_user.create_home_room
         else
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
         end

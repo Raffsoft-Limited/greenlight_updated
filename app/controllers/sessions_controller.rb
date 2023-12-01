@@ -43,6 +43,8 @@ class SessionsController < ApplicationController
 
       # Try to find the user by email
       user = User.find_by(email: email)
+      user.activated = true
+      user.save()
 
       if user.nil?
         # User with the given email does not exist, create a new user
@@ -56,6 +58,7 @@ class SessionsController < ApplicationController
           password_confirmation: password,
           provider:'greenlight',
           name: full_name,
+          activated: true,
           email_verified: true,
           accepted_terms: true, # Assuming you want to accept terms automatically
           role: Role.find_by(name: 'user') # Set the user role

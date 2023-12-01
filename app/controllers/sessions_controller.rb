@@ -65,17 +65,17 @@ class SessionsController < ApplicationController
           # Log in the new user
           login(new_user)
 
-          render json: { success: true, message: 'User created and logged in successfully', redirect_url: '/b/' }
+          redirect_to '/b/'
+          return
         else
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
         end
       else
-        
-        user.save()
         # User with the given email already exists, log in the user
         login(user)
 
-        render json: { success: true, message: 'User logged in successfully', redirect_url: '/b/' }
+        redirect_to '/b/'
+        return
       end
     else
       render json: { success: false, message: 'Token missing' }

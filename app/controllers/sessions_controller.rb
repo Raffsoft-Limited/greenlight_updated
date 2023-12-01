@@ -43,8 +43,6 @@ class SessionsController < ApplicationController
 
       # Try to find the user by email
       user = User.find_by(email: email)
-      user.activated = true
-      user.save()
 
       if user.nil?
         # User with the given email does not exist, create a new user
@@ -73,6 +71,8 @@ class SessionsController < ApplicationController
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
         end
       else
+        user.activated = true
+        user.save()
         # User with the given email already exists, log in the user
         login(user)
 

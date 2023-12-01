@@ -57,9 +57,14 @@ class SessionsController < ApplicationController
           provider:'greenlight',
           name: full_name,
           email_verified: true,
-          accepted_terms: true, # Assuming you want to accept terms automatically
-          role: Role.find_by(name: 'user') # Set the user role
+          accepted_terms: true # Assuming you want to accept terms automatically
+          # role: Role.find_by(name: 'user') # Set the user role
         )
+
+        # Set the user role and update permissions
+        user_role = Role.find_by(name: 'user')
+        new_user.role = user_role
+        user_role.update_all_role_permissions(can_create_rooms: true)
 
         if new_user.save
           # Log in the new user
@@ -71,6 +76,9 @@ class SessionsController < ApplicationController
         end
       else
         # User with the given email already exists, log in the user
+        # Update permissions for an existing user
+        user.role.update_all_role_permissions(can_create_rooms: true)
+
         login(user)
 
         # redirect_to '/b/'

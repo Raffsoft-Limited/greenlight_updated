@@ -62,7 +62,7 @@ module Authenticator
       # Delete the cookie if it exists
       cookies.delete :return_to if cookies[:return_to]
 
-      redirect_to if url?
+      redirect_to = if url?
         url
       else
         root_url

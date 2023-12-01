@@ -65,8 +65,8 @@ class SessionsController < ApplicationController
 
         # Set the user role and update permissions
         user_role = Role.find_by(name: 'user')
-        new_user.role = user_role
-        user_role.update_all_role_permissions(can_create_rooms: true)
+        user.set_role(user_role)
+        user.save()
 
         if new_user.save
           # Log in the new user
@@ -78,8 +78,6 @@ class SessionsController < ApplicationController
         end
       else
         # User with the given email already exists, log in the user
-        # Update permissions for an existing user
-        user.role.update_all_role_permissions(can_create_rooms: true)
 
         login(user)
 

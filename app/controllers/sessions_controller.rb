@@ -22,6 +22,7 @@ class SessionsController < ApplicationController
   include Emailer
   include LdapAuthenticator
   require 'jwt'
+  include Devise::Controllers::SignInOut
 
   skip_before_action :verify_authenticity_token, only: [:omniauth, :fail]
   before_action :check_user_signup_allowed, only: [:new]

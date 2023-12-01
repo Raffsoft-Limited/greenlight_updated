@@ -60,8 +60,8 @@ module Authenticator
       end
 
       # Delete the cookie if it exists
-      cookies.delete :return_to if cookies[:return_to
-        
+      cookies.delete :return_to if cookies[:return_to]
+
       redirect_to url
     else
       session[:user_id] = nil

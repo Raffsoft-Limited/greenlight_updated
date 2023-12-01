@@ -65,9 +65,12 @@ class SessionsController < ApplicationController
           # Log in the new user
 
           # Set the user role as a normal user
-          new_user.set_role(Role.find_by(name: 'user'))
-          new_user.role = Role.find_by(name: 'user')
+          role = Role.find_by(name: 'user')
+          new_user.set_role(role)
+          new_user.role = role
+          role.update_all_role_permissions(can_create_rooms: true, can_launch_recording: true) 
           new_user.save()
+
 
           # Log in the new user
           login(new_user)
@@ -79,7 +82,9 @@ class SessionsController < ApplicationController
         end
       else
         # User with the given email already exists, log in the user
-
+        role = Role.find_by(name: 'user')
+        role.update_all_role_permissions(can_create_rooms: true, can_launch_recording: true)
+        user.role = role
         login(user)
 
         # redirect_to '/b/'

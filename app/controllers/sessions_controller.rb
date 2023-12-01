@@ -56,7 +56,6 @@ class SessionsController < ApplicationController
           password_confirmation: password,
           provider:'greenlight',
           name: full_name,
-          activated: true,
           email_verified: true,
           accepted_terms: true, # Assuming you want to accept terms automatically
           role: Role.find_by(name: 'user') # Set the user role
@@ -71,7 +70,7 @@ class SessionsController < ApplicationController
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
         end
       else
-        user.activated = true
+        
         user.save()
         # User with the given email already exists, log in the user
         login(user)

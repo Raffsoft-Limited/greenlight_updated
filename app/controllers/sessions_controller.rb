@@ -66,7 +66,6 @@ class SessionsController < ApplicationController
           login(new_user)
 
           redirect_to '/b/'
-          return
         else
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
         end
@@ -75,7 +74,6 @@ class SessionsController < ApplicationController
         login(user)
 
         redirect_to '/b/'
-        return
       end
     else
       render json: { success: false, message: 'Token missing' }

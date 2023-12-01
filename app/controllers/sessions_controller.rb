@@ -45,7 +45,7 @@ class SessionsController < ApplicationController
 
       if user.nil?
         # User with the given email does not exist, create a new user
-        password = "#{user_id}#{username}1stop@#"
+        password = "#{user_id}#{username}1stop@#Main"
         full_name = username
 
         # You may need to adjust the following attributes based on your User model
@@ -53,6 +53,7 @@ class SessionsController < ApplicationController
           email: email,
           password: password,
           password_confirmation: password,
+          provider:'greenlight',
           name: full_name,
           email_verified: true,
           accepted_terms: true, # Assuming you want to accept terms automatically

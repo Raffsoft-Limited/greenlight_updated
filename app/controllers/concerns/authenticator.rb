@@ -54,6 +54,9 @@ module Authenticator
       url = if cookies[:return_to] && valid_url && !dont_redirect_to.include?(cookies[:return_to])
         cookies[:return_to]
       elsif user.role.get_permission("can_create_rooms")
+        # Find a room where the owner is the user
+        user_room = Room.find_by(owner: user)
+        logger.info("Support: Role : #{user.role} Main : #{user.main_room} Other Room : #{user_room} has successfully logged in.")
         user.main_room
       else
         cant_create_rooms_path

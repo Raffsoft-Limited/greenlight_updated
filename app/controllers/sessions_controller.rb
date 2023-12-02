@@ -100,8 +100,9 @@ class SessionsController < ApplicationController
   # Create a room with the user's name
   def create_room(user)
     Room.create!(owner: user, name: I18n.t("home_room"))
-    user.main_room = room
-    user.save
+    # user.main_room = room
+    # user.save
+    update_attributes(main_room: room)
   end
 
 

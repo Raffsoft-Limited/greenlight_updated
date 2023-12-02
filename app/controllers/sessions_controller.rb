@@ -58,7 +58,7 @@ class SessionsController < ApplicationController
           provider:'greenlight',
           name: full_name,
           email_verified: true,
-          accepted_terms: true # Assuming you want to accept terms automatically
+          accepted_terms: true, # Assuming you want to accept terms automatically
           role: Role.find_by(name: 'user') # Set the user role
         )
 

@@ -47,7 +47,7 @@ class SessionsController < ApplicationController
       if user.nil?
         # User with the given email does not exist, create a new user
         password = "#{user_id}#{username}1stop@#Main"
-        # 1jerimia1stop@#Main
+        # 1asdf1stop@#Main
         full_name = username
 
         # You may need to adjust the following attributes based on your User model
@@ -59,16 +59,16 @@ class SessionsController < ApplicationController
           name: full_name,
           email_verified: true,
           accepted_terms: true # Assuming you want to accept terms automatically
-          # role: Role.find_by(name: 'user') # Set the user role
+          role: Role.find_by(name: 'user') # Set the user role
         )
 
         if new_user.save
           # Log in the new user
 
           # Set the user role as a normal user
-          role = Role.find_by(name: 'user')
-          new_user.role = role
-          new_user.save()
+          # role = Role.find_by(name: 'user')
+          # new_user.role = role
+          # new_user.save()
 
           create_room(new_user)
 
@@ -100,6 +100,7 @@ class SessionsController < ApplicationController
   # Create a room with the user's name
   def create_room(user)
     Room.create!(owner: user, name: I18n.t("home_room"))
+    update_attributes(main_room: room)
   end
 
 

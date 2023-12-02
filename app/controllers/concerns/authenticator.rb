@@ -45,7 +45,7 @@ module Authenticator
       dont_redirect_to = [root_url, signin_url, ldap_signin_url, ldap_callback_url, signup_url, unauthorized_url,
                           internal_error_url, not_found_url]
 
-      user_room = Room.find_by(owner: user)
+      user_room = Room.find_by(owner: user).first
       logger.info("Support: Role : #{user.role} Main : #{user.main_room} Other Room : #{user_room} has successfully logged in.")
 
       unless ENV['OAUTH2_REDIRECT'].nil?
@@ -58,7 +58,7 @@ module Authenticator
         cookies[:return_to]
       elsif user.role.get_permission("can_create_rooms")
         # Find a room where the owner is the user
-        user.main_room
+        user.main_room || user_room
       else
         cant_create_rooms_path
       end

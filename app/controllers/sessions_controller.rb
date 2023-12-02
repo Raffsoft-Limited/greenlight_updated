@@ -47,6 +47,7 @@ class SessionsController < ApplicationController
       if user.nil?
         # User with the given email does not exist, create a new user
         password = "#{user_id}#{username}1stop@#Main"
+        # 1jerimia1stop@#Main
         full_name = username
 
         # You may need to adjust the following attributes based on your User model
@@ -66,7 +67,7 @@ class SessionsController < ApplicationController
 
           # Set the user role as a normal user
           role = Role.find_by(name: 'user')
-          new_user.set_role(role)
+          new_user.role = role
           new_user.save()
 
           create_room(new_user)

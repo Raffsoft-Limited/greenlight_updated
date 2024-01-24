@@ -49,9 +49,7 @@ class User < ApplicationRecord
             format: PASSWORD_PATTERN,
             confirmation: true,
             if: :validate_password?
-  
 
-  # validates :password, length: { minimum: 5 }, if: :validate_password?
 
   # Bypass validations if omniauth
   validates :accepted_terms, acceptance: true,

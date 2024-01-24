@@ -45,12 +45,12 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false, scope: :provider },
                     format: { with: /\A[\w+\-'.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
-  # validates :password, length: { minimum: 8 },
+  validates :password, length: { minimum: 8 },
+            confirmation: true,
+            if: :validate_password?
   #           format: PASSWORD_PATTERN,
-  #           confirmation: true,
-  #           if: :validate_password?
 
-  validates :password, length: { minimum: 5 }, if: :validate_password?
+  # validates :password, length: { minimum: 5 }, if: :validate_password?
 
   # Bypass validations if omniauth
   validates :accepted_terms, acceptance: true,

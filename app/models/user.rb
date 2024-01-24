@@ -46,10 +46,10 @@ class User < ApplicationRecord
                     format: { with: /\A[\w+\-'.]+@[a-z\d\-.]+\.[a-z]+\z/i }
 
   validates :password, length: { minimum: 8 },
+            format: PASSWORD_PATTERN,
             confirmation: true,
             if: :validate_password?
   
-  #           format: PASSWORD_PATTERN,
 
   # validates :password, length: { minimum: 5 }, if: :validate_password?
 

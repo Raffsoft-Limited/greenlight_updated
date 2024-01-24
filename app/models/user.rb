@@ -50,7 +50,6 @@ class User < ApplicationRecord
             confirmation: true,
             if: :validate_password?
 
-
   # Bypass validations if omniauth
   validates :accepted_terms, acceptance: true,
                              if: -> { greenlight_account? && Rails.configuration.terms },

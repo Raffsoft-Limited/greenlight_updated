@@ -48,6 +48,7 @@ class User < ApplicationRecord
   validates :password, length: { minimum: 8 },
             confirmation: true,
             if: :validate_password?
+  
   #           format: PASSWORD_PATTERN,
 
   # validates :password, length: { minimum: 5 }, if: :validate_password?

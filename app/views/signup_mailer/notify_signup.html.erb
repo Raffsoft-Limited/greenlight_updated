@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+</head>
+<body>
+  <h1>New user signed up on Colabo</h1>
+  <p>Hello,</p>
+  <p>A new user with email <%= @user_email %> has signed up on Colabo.</p>
+  <% if @activation_type == 'automatic_activation' %>
+    <p>This user was activated automatically.</p>
+  <% else %>
+    <p>Please wait for user to activate or activate them manually.</p>
+  <% end %>
+</body>
+</html>

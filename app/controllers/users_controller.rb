@@ -45,6 +45,9 @@ class UsersController < ApplicationController
 
     logger.info "Support: #{@user.email} user has been created."
 
+    # Notify signup
+    send_notify_signup_email(@user.email)
+
     # Set user to pending and redirect if Approval Registration is set
     if approval_registration
       @user.set_role :pending
@@ -65,6 +68,14 @@ class UsersController < ApplicationController
     send_activation_email(@user, @user.create_activation_token)
 
     redirect_to root_path
+  end
+
+  private
+  
+  # Method to send notify_signup email
+  def send_notify_signup_email(user_email)
+    # Assuming the activation type is manual
+    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
   end
 
   # GET /u/:user_uid/edit

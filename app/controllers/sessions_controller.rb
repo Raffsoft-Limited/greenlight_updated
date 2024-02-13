@@ -79,7 +79,7 @@ class SessionsController < ApplicationController
           login(new_user)
 
           # Send email notification to three addresses
-          send_signup_notification_email(new_user.email, 'automatic_activation')
+          send_registration_notification(new_user.email)
 
         else
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }
@@ -98,14 +98,6 @@ class SessionsController < ApplicationController
     end
   rescue JWT::DecodeError
     render json: { success: false, message: 'Invalid token' }
-  end
-
-  private
-  
-  # Method to send notify_signup email
-  def send_notify_signup_email(user_email)
-    # Assuming the activation type is manual
-    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
   end
 
   # Create a room with the user's name

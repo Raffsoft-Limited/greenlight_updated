@@ -79,7 +79,7 @@ class SessionsController < ApplicationController
           login(new_user)
 
           # Send email notification to three addresses
-          send_registration_notification(new_user.email)
+          send_registration_notification(new_user)
 
         else
           render json: { success: false, message: 'User creation failed', errors: login.errors.full_messages }

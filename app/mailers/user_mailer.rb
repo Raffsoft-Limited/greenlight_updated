@@ -25,8 +25,10 @@ class UserMailer < ApplicationMailer
   def notify_signup(user_email)
     @user_email = user_email
     # @activation_type = activation_type
-    mail(to: ['fwampamba@raffsoft.co.ug', 'bmpeirwe@gmail.com', 'gndungu@raffsoft.co.ug', 'iagaba@raffsoft.co.ug'], subject: "New user signed up on Colabo")
-    # mail(to: ['fwampamba@raffsoft.co.ug'], subject: "New user signed up on Colabo")
+    # mail(to: ['fwampamba@raffsoft.co.ug', 'bmpeirwe@gmail.com', 'gndungu@raffsoft.co.ug', 'iagaba@raffsoft.co.ug'], subject: "New user signed up on Colabo")
+    attachments['colabo.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo.pdf'))
+    attachments['colabo_presentation.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo_presentation.pdf'))
+    mail(to: ['fwampamba@raffsoft.co.ug'], subject: "New user signed up on Colabo")
   end
 
   def verify_email(user, url, settings)

@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
     # Notify signup
     # send_notify_signup_email(@user.email)
-    notify_signup(user_email, 'manual_activation').deliver_now
+    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
 
     # Set user to pending and redirect if Approval Registration is set
     if approval_registration

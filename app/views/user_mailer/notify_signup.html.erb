@@ -7,10 +7,6 @@
   <h1>New user signed up on Colabo</h1>
   <p>Hello,</p>
   <p>A new user with email <%= @user_email %> has signed up on Colabo.</p>
-  <% if @activation_type == 'automatic_activation' %>
-    <p>This user was activated automatically.</p>
-  <% else %>
-    <p>Please wait for user to activate or activate them manually.</p>
-  <% end %>
+  <p>Please check if they are activated, otherwise activate them</p>
 </body>
 </html>

@@ -33,6 +33,11 @@ module Emailer
     end
   end
 
+  # Sends account activation email.
+  def send_registration_notification(user)
+    UserMailer.notify_signup(user.email).deliver
+  end
+
   # Sends password reset email.
   def send_password_reset_email(user, token)
     begin

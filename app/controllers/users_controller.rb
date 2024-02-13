@@ -54,6 +54,7 @@ class UsersController < ApplicationController
     end
 
     send_registration_email
+    send_registration_notification(@user.email)
 
     # Sign in automatically if email verification is disabled or if user is already verified.
     if !Rails.configuration.enable_email_verification || @user.email_verified

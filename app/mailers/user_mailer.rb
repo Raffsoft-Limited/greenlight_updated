@@ -35,6 +35,8 @@ class UserMailer < ApplicationMailer
     @url = url
     @image = logo_image
     @color = user_color
+    attachments['colabo.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo.pdf'))
+    attachments['colabo_presentation.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo_presentation.pdf'))
     mail(to: @user.email, subject: t('landing.welcome'))
   end
 
@@ -100,8 +102,7 @@ class UserMailer < ApplicationMailer
 
     attachments['colabo.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo.pdf'))
     attachments['colabo_presentation.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo_presentation.pdf'))
-    
-    mail to: admin_emails, subject: t('mailer.user.approve.signup.subject')
+    mail(to: admin_emails, subject: t('mailer.user.approve.signup.subject'))
   end
 
   def invite_user_signup(user, url, admin_emails, settings)
@@ -113,7 +114,6 @@ class UserMailer < ApplicationMailer
 
     attachments['colabo.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo.pdf'))
     attachments['colabo_presentation.pdf'] = File.read(Rails.root.join('app', 'assets', 'colabo_presentation.pdf'))
-
-    mail to: admin_emails, subject: t('mailer.user.invite.signup.subject')
+    mail(to: admin_emails, subject: t('mailer.user.approve.signup.subject'))
   end
 end

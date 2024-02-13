@@ -2,6 +2,9 @@
 class SignupMailer < ApplicationMailer
   include ApplicationHelper
   include ThemingHelper
+
+  default from: Rails.configuration.smtp_sender
+  
   def notify_signup(user_email, activation_type)
     @user_email = user_email
     @activation_type = activation_type

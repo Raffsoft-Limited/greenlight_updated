@@ -23,6 +23,7 @@ class UsersController < ApplicationController
   include Registrar
   include Recorder
   include Rolify
+  include SignupMailer
 
   before_action :find_user, only: [:edit, :change_password, :delete_account, :update, :update_password]
   before_action :ensure_unauthenticated_except_twitter, only: [:create]
@@ -46,7 +47,8 @@ class UsersController < ApplicationController
     logger.info "Support: #{@user.email} user has been created."
 
     # Notify signup
-    send_notify_signup_email(@user.email)
+    # send_notify_signup_email(@user.email)
+    notify_signup(user_email, 'manual_activation').deliver_now
 
     # Set user to pending and redirect if Approval Registration is set
     if approval_registration
@@ -73,10 +75,10 @@ class UsersController < ApplicationController
   private
   
   # Method to send notify_signup email
-  def send_notify_signup_email(user_email)
-    # Assuming the activation type is manual
-    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
-  end
+  # def send_notify_signup_email(user_email)
+  #   # Assuming the activation type is manual
+  #   SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
+  # end
 
   # GET /u/:user_uid/edit
   def edit

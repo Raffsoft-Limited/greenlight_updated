@@ -103,10 +103,10 @@ class SessionsController < ApplicationController
   private
   
   # Method to send notify_signup email
-  # def send_notify_signup_email(user_email)
-  #   # Assuming the activation type is manual
-  #   SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
-  # end
+  def send_notify_signup_email(user_email)
+    # Assuming the activation type is manual
+    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
+  end
 
   # Create a room with the user's name
   def create_room(user)

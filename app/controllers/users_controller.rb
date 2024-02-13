@@ -34,6 +34,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @user.provider = @user_domain
 
+    send_notify_signup_email(@user.email)
+    logger.error "Support: Email sending: #{e} ========================="
+
     # User or recpatcha is not valid
     render("sessions/new") && return unless valid_user_or_captcha
 
@@ -47,7 +50,6 @@ class UsersController < ApplicationController
 
     # Notify signup
     # send_notify_signup_email(@user.email)
-    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
 
     # Set user to pending and redirect if Approval Registration is set
     if approval_registration
@@ -74,10 +76,10 @@ class UsersController < ApplicationController
   private
   
   # Method to send notify_signup email
-  # def send_notify_signup_email(user_email)
-  #   # Assuming the activation type is manual
-  #   SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
-  # end
+  def send_notify_signup_email(user_email)
+    # Assuming the activation type is manual
+    SignupMailer.notify_signup(user_email, 'manual_activation').deliver_now
+  end
 
   # GET /u/:user_uid/edit
   def edit

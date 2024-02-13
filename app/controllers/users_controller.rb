@@ -23,7 +23,6 @@ class UsersController < ApplicationController
   include Registrar
   include Recorder
   include Rolify
-  include SignupMailer
 
   before_action :find_user, only: [:edit, :change_password, :delete_account, :update, :update_password]
   before_action :ensure_unauthenticated_except_twitter, only: [:create]
